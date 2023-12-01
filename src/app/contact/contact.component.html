@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="card" style="width: 700px;">
+          <div class="card-body">
+            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.867887181974!2d77.65715487494309!3d12.851808417493585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae14f13abe3233%3A0x6e3de9e4696ba33f!2sTimken%20India%20Limited!5e0!3m2!1sen!2sin!4v1701066776615!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+        <div class="card" style="width: 700px;">
+          <div class="card-body">
+            <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.form.valid)">
+                      <!-- we will place our fields here -->
+                      <!--name-->
+                      <div>
+                      <label class="fw-bold">Name</label>
+                      <!--bind name to ngModel, it's required with minimum 5 characters-->
+                      <input type="text" name="name" [(ngModel)]="user.name" #name="ngModel" required minlength="5" class="form-control">
+                      <!--show error only when field is not valid & it's dirty or form submited-->
+                      <small [hidden]="name.valid || (name.pristine && !f.submitted)">
+                      Name is required (minimum 5 characters).
+                      </small>
+                      </div>
+                      
+                      <!--adrress group-->
+                      <div ngModelGroup="address">
+                      <!--street-->
+                      <div>
+                   
+                  <label class="fw-bold">Street</label>
+                      <input type="text" name="street" [(ngModel)]="user.address.street" #street="ngModel" required class="form-control">
+                      <small [hidden]="street.valid || (street.pristine && !f.submitted)" class="text-danger">
+                      Street is required.
+                      </small>
+                      </div>
+                      <!--postcode-->
+                      <div>
+                      <label class="fw-bold">Post code</label>
+                      <input type="text" name="postcode" [(ngModel)]="user.address.postcode" class="form-control">
+                      </div>
+                      </div>
+                      <button class="btn btn-success" type="submit">Submit</button>
+            </form>
+                
+                
+            
+                <div class="container">
+                       <h4 class="text-success">Your Details</h4>
+                       <h5> Name: {{f.value.name}}</h5>
+                       <h5> Address: {{f.value.address.street}}</h5>
+                       <h5> Postcode: {{f.value.address.postcode}}</h5>
+                    
+                    <!--  <h5> {{f.value|json}}</h5> -->
+                
+                </div>
+          </div>
+        </div>
+  
+    </div>
+      
+  </div>
